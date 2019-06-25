@@ -8,6 +8,7 @@ pylint = "*"
 
 [packages]
 feedparser = "*"
+re = "*"
 
 [requires]
 python_version = "3.7"
