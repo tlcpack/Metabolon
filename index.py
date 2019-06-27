@@ -25,15 +25,16 @@ test_dict = {
 
 # feedparser.registerDateHandler(myDateHandler)
 
+for blogs in test_dict.values():
+    for blog in blogs: 
+        rss = feedparser.parse(blog)
+        parsed_date = rss.feed.published_parsed
+        month = parsed_date.tm_mon
+        day = parsed_date.tm_mday
+        year = parsed_date.tm_year
 
-rss = feedparser.parse('https://dianerehm.org/rss/npr/dr_podcast.xml')
-parsed_date = rss.feed.published_parsed
-month = parsed_date.tm_mon
-day = parsed_date.tm_mday
-year = parsed_date.tm_year
-
-most_recent = (year, month, day)
-print(most_recent)
+        most_recent = (year, month, day)
+        print(most_recent)
 
 
 print(datetime.datetime.now())
