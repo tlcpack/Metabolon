@@ -13,20 +13,27 @@ test_dict = {
     'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
 }
 
-_my_date_pattern = re.compile(
-    r'(\d{,2})/(\d{,2})/(\d{4}) (\d{,2}):(\d{2}):(\d{2})')
+# _my_date_pattern = re.compile(
+#     r'(\d{,2})/(\d{,2})/(\d{4}) (\d{,2}):(\d{2}):(\d{2})')
 
-def myDateHandler(aDateString):
-    """parse a UTC date in MM/DD/YYYY HH:MM:SS format"""
-    month, day, year, hour, minute, second = \
-        _my_date_pattern.search(aDateString).groups()
-    return (int(year), int(month), int(day), \
-        int(hour), int(minute), int(second), 0, 0, 0)
+# def myDateHandler(aDateString):
+#     """parse a UTC date in MM/DD/YYYY HH:MM:SS format"""
+#     month, day, year, hour, minute, second = \
+#         _my_date_pattern.search(aDateString).groups()
+#     return (int(year), int(month), int(day), \
+#         int(hour), int(minute), int(second), 0, 0, 0)
 
-feedparser.registerDateHandler(myDateHandler)
+# feedparser.registerDateHandler(myDateHandler)
 
 
 rss = feedparser.parse('https://dianerehm.org/rss/npr/dr_podcast.xml')
-print(rss.feed.published)
+parsed_date = rss.feed.published_parsed
+month = parsed_date.tm_mon
+day = parsed_date.tm_mday
+year = parsed_date.tm_year
+
+most_recent = (year, month, day)
+print(most_recent)
+
 
 print(datetime.datetime.now())
