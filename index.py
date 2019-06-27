@@ -12,15 +12,15 @@ import re
 test_dict = {
     'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
     'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
-    'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
-    'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
+    'NYT' : ['https://rss.nytimes.com/services/xml/rss/nyt/US.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Business.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml']
+    
 }
 def Activity_test (feed):
     # sample = []
     for blogs in test_dict.values():
         for blog in blogs: 
             rss = feedparser.parse(blog)
-            parsed_date = rss.feed.published_parsed
+            parsed_date = rss.entries[0].published_parsed
             month = parsed_date.tm_mon
             day = parsed_date.tm_mday
             year = parsed_date.tm_year
