@@ -11,30 +11,25 @@ import re
 
 test_dict = {
     'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
+    'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
+    'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
+    'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
 }
+def Activity_test (feed):
+    # sample = []
+    for blogs in test_dict.values():
+        for blog in blogs: 
+            rss = feedparser.parse(blog)
+            parsed_date = rss.feed.published_parsed
+            month = parsed_date.tm_mon
+            day = parsed_date.tm_mday
+            year = parsed_date.tm_year
 
-# _my_date_pattern = re.compile(
-#     r'(\d{,2})/(\d{,2})/(\d{4}) (\d{,2}):(\d{2}):(\d{2})')
-
-# def myDateHandler(aDateString):
-#     """parse a UTC date in MM/DD/YYYY HH:MM:SS format"""
-#     month, day, year, hour, minute, second = \
-#         _my_date_pattern.search(aDateString).groups()
-#     return (int(year), int(month), int(day), \
-#         int(hour), int(minute), int(second), 0, 0, 0)
-
-# feedparser.registerDateHandler(myDateHandler)
-
-for blogs in test_dict.values():
-    for blog in blogs: 
-        rss = feedparser.parse(blog)
-        parsed_date = rss.feed.published_parsed
-        month = parsed_date.tm_mon
-        day = parsed_date.tm_mday
-        year = parsed_date.tm_year
-
-        days_since = datetime.date.today() - datetime.date(year, month, day)
-        print(days_since.days)
+            days_since = datetime.date.today() - datetime.date(year, month, day)
+            print(days_since.days)
+            print('done with ' + blog)
+        print('finished with ' + str(blogs))
+    print('all done')
 
 
-print(datetime.datetime.now())
+print(Activity_test(test_dict))
