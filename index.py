@@ -15,10 +15,10 @@ test_dict = {
     'NYT' : ['https://rss.nytimes.com/services/xml/rss/nyt/US.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Business.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml']
     
 }
-def Activity_test (feed):
-    # sample = []
-    for blogs in test_dict.values():
-        for blog in blogs: 
+def Activity_test (feed, days):
+    sample = []
+    for blogs in test_dict:
+        for blog in test_dict[blogs]: 
             rss = feedparser.parse(blog)
             parsed_date = rss.entries[0].published_parsed
             month = parsed_date.tm_mon
@@ -26,10 +26,13 @@ def Activity_test (feed):
             year = parsed_date.tm_year
 
             days_since = datetime.date.today() - datetime.date(year, month, day)
+            if days_since.days > days:
+                sample.append(blogs)
             print(days_since.days)
+            print(sample)
             print('done with ' + blog)
         print('finished with ' + str(blogs))
     print('all done')
 
 
-print(Activity_test(test_dict))
+print(Activity_test(test_dict, 1))
