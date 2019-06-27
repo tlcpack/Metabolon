@@ -33,8 +33,8 @@ for blogs in test_dict.values():
         day = parsed_date.tm_mday
         year = parsed_date.tm_year
 
-        most_recent = (year, month, day)
-        print(most_recent)
+        days_since = datetime.date.today() - datetime.date(year, month, day)
+        print(days_since.days)
 
 
 print(datetime.datetime.now())
