@@ -27,7 +27,7 @@ def Activity_test (feed, days):
             days_since = datetime.date.today() - datetime.date(year, month, day)
             if days_since.days > days:
                 sample.append(blogs)
-            print(days_since.days)
+            print(blogs + " last posted " + str(days_since.days) + " days ago")
             print(sample)
             print('done with ' + blog)
         print('finished with ' + str(blogs))
