@@ -3,7 +3,7 @@ from index import Activity_test
 
 class TestRSS(unittest.TestCase):
 
-    def setUp(self):
+    def test_one(self):
         test_dict = {
         'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
         'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
