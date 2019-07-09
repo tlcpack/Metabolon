@@ -23,6 +23,7 @@ test_dict_2 = {
     
 }
 def Activity_test (feed, days):
+    days = int(days)
     sample = []
     for blogs in feed:
         for blog in feed[blogs]: 
@@ -37,7 +38,17 @@ def Activity_test (feed, days):
                 sample.append(blogs)
     return sample
 
+def get_day_request():
+    while True:
+        user_input = input("days? ")
+        if user_input.isnumeric():
+            guess = int(user_input)
+            return guess
+        print("not valid")
 
-x = Activity_test(test_dict_1, 1)
-y = Activity_test(test_dict_2, 1)
+
+days = get_day_request()
+x = Activity_test(test_dict_1, days)
+y = Activity_test(test_dict_2, days)
 print(x)
+print(y)
