@@ -32,6 +32,8 @@ def Activity_test (feed, days):
             print('done with ' + blog)
         print('finished with ' + str(blogs))
     print('all done')
+    return sample
 
 
-print(Activity_test(test_dict, 1))
+x = Activity_test(test_dict, 1)
+print(x)
