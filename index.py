@@ -36,19 +36,18 @@ def Activity_test (feed, days):
             days_since = datetime.date.today() - datetime.date(year, month, day)
             if days_since.days > days:
                 sample.append(blogs)
+    print(f"The RSS feeds with the requested inactivity are: {sample}")
     return sample
 
 def get_day_request():
     while True:
-        user_input = input("days? ")
+        user_input = input("How many days of inactivity should we check for? ")
         if user_input.isnumeric():
             guess = int(user_input)
             return guess
-        print("not valid")
+        print("Oops, that input was invalid")
 
 
 days = get_day_request()
 x = Activity_test(test_dict_1, days)
 y = Activity_test(test_dict_2, days)
-print(x)
-print(y)
