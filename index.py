@@ -8,16 +8,24 @@ import datetime
 # • Our code is made in incremental commits and with meaningful comments.
 # • Reply with questions if necessary, or document assumptions used to make progress.
 
-test_dict = {
+test_dict_1 = {
     'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
     'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
     'NYT' : ['https://rss.nytimes.com/services/xml/rss/nyt/US.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Business.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml']
     
 }
+
+test_dict_2 = {
+    'Diane Rehm' : ['https://dianerehm.org/rss/npr/dr_podcast.xml'],
+    'Bill Maher' : ['http://billmaher.hbo.libsynpro.com/rss'],
+    'NYT' : ['https://rss.nytimes.com/services/xml/rss/nyt/US.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Business.xml', 'https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml'],
+    'MTP' : ['http://podcastfeeds.nbcnews.com/meetthepress']
+    
+}
 def Activity_test (feed, days):
     sample = []
-    for blogs in test_dict:
-        for blog in test_dict[blogs]: 
+    for blogs in feed:
+        for blog in feed[blogs]: 
             rss = feedparser.parse(blog)
             parsed_date = rss.entries[0].published_parsed
             month = parsed_date.tm_mon
@@ -27,13 +35,9 @@ def Activity_test (feed, days):
             days_since = datetime.date.today() - datetime.date(year, month, day)
             if days_since.days > days:
                 sample.append(blogs)
-            print(blogs + " last posted " + str(days_since.days) + " days ago")
-            print(sample)
-            print('done with ' + blog)
-        print('finished with ' + str(blogs))
-    print('all done')
     return sample
 
 
-x = Activity_test(test_dict, 1)
+x = Activity_test(test_dict_1, 1)
+y = Activity_test(test_dict_2, 1)
 print(x)
