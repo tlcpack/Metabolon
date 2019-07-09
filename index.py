@@ -23,7 +23,6 @@ test_dict_2 = {
     
 }
 def Activity_test (feed, days):
-    days = int(days)
     sample = []
     for blogs in feed:
         for blog in feed[blogs]: 
